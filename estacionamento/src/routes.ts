@@ -1,5 +1,6 @@
 import { Router } from "express";
 import pool from "./database";
+import { Request, Response } from "express";
 
 const router = Router();
 
@@ -38,8 +39,11 @@ router.patch("/tickets/:id", async (req, res) => {
             "UPDATE tickets SET saida = $1, valor = $2 WHERE id = $3 RETURNING *",
             [saida, valor, id]
         );
+
         res.json(result.rows[0]);
+
     } catch (err) {
+        console.error("Erro no servidor: ", err);
         res.status(500).json({ error: "Erro ao atualizar ticket" });
     }
 });
