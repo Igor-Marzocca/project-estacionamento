@@ -40,7 +40,7 @@ router.patch("/tickets/:id", async (req, res) => {
             [saida, valor, id]
         );
 
-        res.json(result.rows[0]);
+        res.json(result.rows[0]); //aaaaaa
 
     } catch (err) {
         console.error("Erro no servidor: ", err);
